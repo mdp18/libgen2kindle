@@ -11,9 +11,9 @@ Below are a list of features that are currently implemented with additional feat
 - [x] Library Genesis Mirror Link Retry Function
 - [x] downloaded file (PDF,Mobi,etc.) to epub conversion (Amazon is looking towards epub being a standard with mobi and azw being deprecated.)
 - [x] SMTP Email Configuration
-- [] pip installation
-- [] bulk download and send to kindle
-- [] direct download and send by libgen link
+- [ ] pip installation
+- [ ] bulk download and send to kindle
+- [ ] direct download and send by libgen link
 
 
 
