@@ -11,9 +11,9 @@ parser.read('settings.ini')
 incompatibleext = [".mobi", ".azw", ".pdf"]
 
 def check_email_settings():
-    kindle_email = parser['general']['kindle-email']
-    user_email = parser['general']['your-email']
-    user_password = parser['general']['your-password']
+    kindle_email = parser['general']['kindle-email'].replace('"', '')
+    user_email = parser['general']['your-email'].replace('"', '')
+    user_password = parser['general']['your-password'].replace('"', '')
     if kindle_email != "" and user_email != "" and user_password != "":
         return True
     else:
@@ -46,6 +46,7 @@ def check_site(url):
         return False
 
 def main(search_param):
+
     libgen_urls = json.loads(parser['general']['libgen-urls'])
 
     if not search_param:
@@ -64,7 +65,6 @@ def main(search_param):
         else:
             print("Could not connect to any url")
             sys.exit()
-
         print("\n")
         print("Found " + str(len(libgen_data)) + " results")
         print("format: [index] [title] [author] [year(if any)] [size] [extension]")
