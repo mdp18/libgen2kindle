@@ -1,3 +1,4 @@
+import email
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -9,16 +10,16 @@ settings = configparser.ConfigParser()
 settings.read('settings.ini')
 
 #The email and password which your kindle is registered with -- Approved Personal Document E-mail List
-fromaddr = settings['general']['your-email']
-fromaddrpw = settings['general']['your-email-password']
+fromaddr = settings['general']['your-email'].replace('"', '')
+fromaddrpw = settings['general']['your-email-password'].replace('"', '')
 
 #Your kindle email [@kindle.com] - Find under [Send-to-Kindle E-Mail Settings]
-toaddr = settings['general']['kindle-email']
+toaddr = settings['general']['kindle-email'].replace('"', '')
+email_provider = settings['general']['email-provider'].replace('"', '')
 
 
 
 def getEmailProvider():
-    email_provider = settings['general']['email-provider']
     if email_provider == 'gmail':
         return 'smtp.gmail.com'
     elif email_provider == 'outlook' or email_provider == 'hotmail' or email_provider == 'live':
@@ -31,7 +32,6 @@ def getEmailProvider():
         return Exception('Unknown email provider.')
 
 def getEmailProviderPort():
-    email_provider = settings['general']['email-provider']
     if email_provider == 'gmail':
         return 587
     elif email_provider == 'outlook' or email_provider == 'hotmail' or email_provider == 'live':
@@ -65,7 +65,7 @@ def send(subject, path):
     ### IMPORTANT ###
     # Microsoft Live = smtp.live.com, For gmail use smtp.gmail.com and so on..
 
-    server = smtplib.SMTP(getEmailProvider(), getEmailProviderPort())
+    server = smtplib.SMTP(host=getEmailProvider(), port=getEmailProviderPort())
     server.starttls()
 
     #Password of the email your kindle is registed with

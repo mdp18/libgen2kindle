@@ -13,7 +13,7 @@ incompatibleext = [".mobi", ".azw", ".pdf"]
 def check_email_settings():
     kindle_email = parser['general']['kindle-email'].replace('"', '')
     user_email = parser['general']['your-email'].replace('"', '')
-    user_password = parser['general']['your-password'].replace('"', '')
+    user_password = parser['general']['your-email-password'].replace('"', '')
     if kindle_email != "" and user_email != "" and user_password != "":
         return True
     else:
